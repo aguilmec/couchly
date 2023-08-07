@@ -1,0 +1,17 @@
+.page-info{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    background-color: rgba(0, 0, 255, 0.062);
+    padding-left: 150px;
+    align-items: center;
+    font-size: 28px;
+    font-family: Open Sans;
+    font-weight: bold;
+    height: 170px;
+    margin-bottom: 50px;
+    letter-spacing: 3px;
+    color: rgb(37, 35, 65);
+    cursor: default;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.432);
+}

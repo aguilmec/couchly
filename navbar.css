@@ -1,0 +1,70 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.nav-bar{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1;
+    height: 70px;
+    align-items: center;
+    text-align: center;
+}
+
+.left-container{
+    margin-left: 60px;
+    display: flex;
+    flex-shrink: 0;
+}
+
+.right-container{
+    margin-right: 60px;
+}
+
+.nav-bar-button{
+    background-color: transparent;
+    border: none;
+    letter-spacing: 3px;
+    color: rgb(37, 35, 65);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: normal;
+    margin-left: 15px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: text-shadow 0.2s;
+}
+
+.cart{
+    background-color: transparent;
+    color: rgb(37, 35, 65);
+    border: none;
+    cursor: pointer;
+    transition: text-border 0.2s;
+    margin-top: 10px;
+}
+
+
+.middle-container{
+    color: rgb(43, 39, 39);
+    font-family: Dancing Script;
+    font-weight: bold;
+    font-size: 60px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.452);
+    margin-top: 0;
+    cursor: default;
+    margin-top: -15px;
+}
+
+.left-container{
+    padding-left: 20%;
+}
+
+.right-container{
+    padding-right: 20%;
+}

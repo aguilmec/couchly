@@ -1,0 +1,146 @@
+.main-grid{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    column-gap: 20px;
+}
+
+.product-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    margin-bottom: 100px;
+}
+.product{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.432);
+    border-radius: 8px 8px 8px 8px;
+}
+.image-container-product{
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+
+.product-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom-container-product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-modal{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+
+.image-container-product:hover .product-modal{
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.404);
+}
+
+.product-name{
+    margin-top: 5px;
+}
+
+.product-name{
+    margin-top: 8px;
+    margin-bottom: 5px;
+    font-family: Roboto;
+    font-size: 14px;
+    color: rgb(68, 68, 68);
+}
+
+.product-price{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-family: Roboto;
+    font-weight: lighter;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(158, 105, 26);
+    cursor: default;
+}
+
+.add-cart-product,
+.search-button-product{
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.add-cart-product{
+    margin-right: 10px;
+}
+
+.search-button-product{
+    margin-left: 10px;
+}
+
+.product-name{
+    cursor: pointer;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.sidebar-text{
+    margin-bottom: 0px;
+    letter-spacing: 3px;
+    font-family: Open Sans;
+    color: rgb(37, 35, 65);
+    font-size: 13px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.sidebar-button{
+    font-family: Open Sans;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.price-slider{
+    width: 150px;
+    cursor: pointer;
+}
+
+.radio-button{
+    display: flex;
+    margin-left: 10px;
+    margin-bottom: 8px;
+}
+
+.radio-button-label{
+    font-family: Open Sans;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.type-option{
+    cursor: pointer;
+    margin-left: 15px;
+}
