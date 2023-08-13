@@ -67,4 +67,31 @@ body{
 
 .right-container{
     padding-right: 20%;
+    position: relative;
 }
+
+.number-of-items{
+    position: absolute;
+    background-color: rgb(161, 0, 0);
+    color: white;
+    left: 40%;
+    border-radius: 15px;
+    width: 17px;
+    height: 17px;
+    padding-top: 0px;
+    font-size: 12px;
+    font-weight: bold;
+    top: 0px;
+    display: none;
+}
+
+@media (max-width:970px) {
+    .left-container{
+        flex-shrink: 0;
+    }
+
+    .product{
+        width: 100%;
+    }
+}
+

@@ -33,6 +33,12 @@ body{
     grid-template-rows: 1fr;
 }
 
+.header:hover .modal-button{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-shadow: none;
+}
+
 .image-container-header{
     height: 100vh;
 }
@@ -41,13 +47,14 @@ body{
     object-fit: cover;
     height: 100%;
     width: 100%;
-    filter: blur(3px);
+    filter: blur(0px);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.295);
 }
 
 .header-modal{
     position: absolute;
     top: 50%;
-    left: 20%;
+    left: 18%;
 }
 
 .nav-bar-button{
@@ -117,6 +124,7 @@ body{
     margin-top: 8px;
     margin-bottom: 15px;
     cursor: default;
+    text-shadow: 1px 1px 1px black;
 }
 
 .modal-button{
@@ -132,12 +140,7 @@ body{
     font-weight: bold;
     transition: background-color 0.4s;
     cursor: pointer;
-
-}
-
-.modal-button:hover{
-    background-color: rgb(255, 255, 255);
-    color: black;
+    text-shadow: 1px 1px 1px black;
 }
 
 .featured-container{
@@ -154,9 +157,11 @@ body{
     letter-spacing: 4px;
     color: rgb(37, 35, 65);
     margin-bottom: 55px;
-    border-bottom: dotted;
-    border-color: rgb(158, 105, 26);
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: rgba(158, 105, 26, 0.603);
     padding-bottom: 8px;
+    padding-bottom: 0px;
     cursor: default;
 }
 
@@ -164,21 +169,20 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 40px;
-    column-gap: 50px;
+    column-gap: 20px;
     margin-bottom: 50px;
 }
 
 .featured-product{
-    width: 300px;
+    width: 375px;
     background-color: white;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.432);
-    border-radius: 8px 8px 8px 8px;
     transition: border-radius 0.4s;
     transition: background-color 0.3s;
 }
 
 .image-container-featured{
-    height: 200px;
+    height: 300px;
     width: 100%;
     position: relative;
 }
@@ -187,7 +191,6 @@ body{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px 8px 0px 0px;
     transition: border-radius 0.4s;
     transition: background-color 0.3s;
 }
@@ -210,7 +213,7 @@ body{
     margin-top: 8px;
     margin-bottom: 5px;
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 16px;
     color: rgb(68, 68, 68);
     cursor: pointer;
 }
@@ -220,7 +223,7 @@ body{
     margin-bottom: 5px;
     font-family: Roboto;
     font-weight: lighter;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     color: rgb(158, 105, 26);
     cursor: default;
@@ -260,7 +263,7 @@ body{
 
 .more-products{
     margin-bottom: 50px;
-    padding: 8px 15px;
+    padding: 10px 20px;
     border-radius: 8px;
     border-style: none;
     border-width: 2px;
@@ -281,3 +284,227 @@ body{
     margin-bottom: 50px;
 }
 
+.sales-banner{
+    height: 450px;
+    position: relative;
+}
+
+.sales-banner:hover .sales-button{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-shadow: none;
+}
+
+.sales-img{
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+    filter: blur(0px);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.295);
+}
+
+.banner-modal{
+    position: absolute;
+    top: 40%;
+    left: 18%;
+}
+
+.banner-modal-title{
+    font-size: 55px;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-family: Dancing Script;
+    cursor: default;
+    letter-spacing: 1px;
+}
+
+.banner-description{
+    color: white;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-family: Open Sans;
+    text-shadow: 1px 1px 1px black;
+    cursor: default;
+}
+
+.sales-button{
+    background-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    color: white;
+    border-color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: Open Sans;
+    letter-spacing: 3px;
+    font-weight: bold;
+    transition: background-color 0.4s;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px black;
+    position: absolute;
+    margin-top: 15px;
+}
+
+.bottom-grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1560px;
+    row-gap: 20px;
+    column-gap: 20px;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.bottom-grid-top{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.bottom-grid-bottom{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.bottom-grid-top-left,
+.bottom-grid-top-right{
+    height: 400px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bottom-top-left-img,
+.bottom-top-right-img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: blur(0px);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.432);
+}
+
+.bottom-grid-bottom-left,
+.bottom-grid-bottom-right,
+.bottom-grid-bottom-middle{
+    width: 1fr;
+    height: 300px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bottom-bottom-left-img{
+    object-fit: cover;
+    height: 300px;
+    filter: blur(0px);
+    width: 100%;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.432);
+}
+
+.bottom-bottom-modal{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 10px;
+    background-color: rgba(0, 0, 0, 0.336);
+    height: 100px;
+    border-radius: 5px;
+}
+
+.bottom-bottom-modal-message{
+    color: rgb(255, 255, 255);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: default;
+    letter-spacing: 1px;
+}
+
+.bottom-bottom-modal-info,
+.bottom-top-modal-info{
+    color: rgb(49, 49, 49);
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-family: Open Sans;
+    font-weight: bold;
+    cursor: default;
+    letter-spacing: 1px;
+}
+
+.bottom-modal-left-button,
+.bottom-modal-middle-button,
+.bottom-modal-right-button,
+.top-modal-left-button,
+.top-modal-right-button{
+    background-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: Open Sans;
+    letter-spacing: 3px;
+    font-weight: bold;
+    transition: background-color 0.4s;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+}
+
+.bottom-grid-bottom-left:hover .bottom-modal-left-button{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-shadow: none;
+}
+
+.bottom-grid-bottom-middle:hover .bottom-modal-middle-button{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-shadow: none;
+}
+.bottom-grid-bottom-right:hover .bottom-modal-right-button{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-shadow: none;
+}
+
+.bottom-grid-top-left:hover .top-modal-left-button{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-shadow: none;
+}
+
+.bottom-grid-top-right:hover .top-modal-right-button{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    text-shadow: none;
+}
+
+.featured-title-bottom{
+    font-family: Open Sans;
+    font-size: 28px;
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 55px;
+    margin-top: 0;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: rgba(158, 105, 26, 0.603);
+    padding-bottom: 8px;
+    padding-bottom: 0px;
+    cursor: default;
+}
