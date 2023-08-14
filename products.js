@@ -18,6 +18,10 @@ const coffeeTableFilter = document.getElementById('coffee-table-filter');
 const allFilter = document.getElementById('all-filter');
 const cartNumber = document.querySelector('.number-of-items');
 const cartButton = document.querySelector('.cart');
+const cart = document.querySelector('.side-cart');
+const cartGrid = document.querySelector('.cart-grid');
+const closeButton = document.querySelector('.close-button');
+const cartTotal = document.querySelector('.cart-total');
 
 productsButton.addEventListener('click', ()=>{navigateToPage('products')});
 homeButton.addEventListener('click', ()=>{navigateToPage('index')});
@@ -29,11 +33,14 @@ sofaFilter.addEventListener('click', ()=>{filterByType('sofa')});
 closetFilter.addEventListener('click', ()=>{filterByType('closet')});
 coffeeTableFilter.addEventListener('click', ()=>{filterByType('coffee table')});
 allFilter.addEventListener('click', ()=>{filterByType('all')});
-cartButton.addEventListener('click', ()=>{console.log('puta')})
+cartButton.addEventListener('click', ()=>{showCart(true)});
+closeButton.addEventListener('click',()=>{showCart(false)});
 
 let makers = [];
 let cartItems = [];
 let data = [];
+let total = 0;
+
 
 //Get data from firebase
 getDocs(colRef)
@@ -49,6 +56,14 @@ getDocs(colRef)
 })
 .catch((error)=>{console.log(error.message)});
 
+//Function that shows/hides cart
+function showCart(value){
+    if(value){
+        cart.style.display = 'flex';
+    }else{
+        cart.style.display = 'none';
+    };
+};
 
 //Function that takes an array and updates the filter elements on the page
 function updateFilters(){
@@ -60,7 +75,6 @@ function updateFilters(){
     const filters = document.querySelectorAll('.sidebar-button');
     filters.forEach(filter => {
         filter.addEventListener('click',()=>{
-            console.log(filter.innerHTML)
             filterByMake(filter.innerHTML);
         });
     });
@@ -95,7 +109,6 @@ function filterByMake(make){
     }else{
         updateGrid(data);
     };
-    
 };
 
 updateFilters();
@@ -114,30 +127,88 @@ function changePrice(){
 function addItemToCart(itemID){
     let a = data.filter((item)=>{if(item.id === itemID){return true}})
     cartItems.push(a[0]);
-    updateCartNumber();
+    updateCartNumber(true);
+    updateCart(cartItems);
 };
 
 //Function that updates the number of cart items
-function updateCartNumber(){
+function updateCartNumber(type){
     let value = Number(cartNumber.innerHTML);
-    if(value === 0){
-        cartNumber.style.display = 'flex';
-        cartNumber.style.textAlign = 'center';
-        cartNumber.style.justifyContent = 'center';
-        value += 1;
-        cartNumber.innerHTML = value
+    if(type){
+        if(value === 0){
+            cartNumber.style.display = 'flex';
+            cartNumber.style.textAlign = 'center';
+            cartNumber.style.justifyContent = 'center';
+            value += 1;
+            cartNumber.innerHTML = value;
+        }else{
+            value += 1;
+            cartNumber.innerHTML = value;
+            cartNumber.style.display = "bock";
+        };
     }else{
-        value += 1;
-        cartNumber.innerHTML = value
-        cartNumber.style.display = "bock";
-    };
+        if(value === 0){
+            cartNumber.style.display = "none";
+        }else{
+            value -= 1;
+            cartNumber.innerHTML = value;
+        };
+    }
+    
 };
+
+function updateCart(items){
+    let cartItems = '';
+    total = 0;
+    items.forEach((item)=>{
+        total = total + item.price;
+        cartItems = cartItems + `<div class="cart-item">
+        <img class="cart-image" src="${item.image}">
+        <div class="cart-item-container">
+            <p class="item-name">
+                ${item.name}
+            </p>
+            <p class="item-price">
+                $${item.price}
+            </p>
+            <button value = "${item.id}" class="remove-item">
+                Remove
+            </button>
+        </div>
+        <div class="cart-buttons">
+            <button class="cart-button">
+                +
+            </button>
+            <button class="cart-button">
+                -
+            </button>
+        </div>
+    </div>`;
+    });
+    cartGrid.innerHTML = cartItems;
+    cartTotal.innerHTML = `Total: $${total}`;
+
+    const removeButtonsList = document.querySelectorAll('.remove-item');
+    removeButtonsList.forEach((button)=>{
+        button.addEventListener('click',()=>{removeItem(button.value)});
+    });
+};
+
+function removeItem(id){
+    let price = 0;
+    cartItems = cartItems.filter((item)=>{
+        if(item.id !== id){
+            return true;
+        };
+    });
+    updateCart(cartItems);
+    updateCartNumber(false);
+}
 
 //Function that updates grid
 function updateGrid(data){
     let products = '';
     data.forEach((product)=>{
-        //console.log(product.id)
         products = products + `<div class="product">
         <div class="image-container-product">
             <div class="product-modal">
