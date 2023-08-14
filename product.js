@@ -26,7 +26,7 @@ async function getProduct(productId){
 };
 
 function navigateToPage(string){
-    window.location.href = `/${string}.html`;
+    window.location.href = `couchly/${string}.html`;
 };
 
 function updateProduct(product){
