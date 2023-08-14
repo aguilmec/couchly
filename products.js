@@ -102,7 +102,7 @@ updateFilters();
 
 //Page navigation
 function navigateToPage(string){
-    window.location.href = `couchly/${string}.html`;
+    window.location.href = `/${string}.html`;
 };
 
 //Function that changes the price of the price tag element based on the selected value on the slider
@@ -178,7 +178,7 @@ function updateGrid(data){
 };
 
 function gotoProduct(id){
-    window.location.href = `couchly/product.html?${id}`;
+    window.location.href = `product.html?${id}`;
 };
 
 updateGrid(data);

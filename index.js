@@ -35,5 +35,5 @@ function updateFeatured(){
 };
 
 function navigateToPage(string){
-    window.location.href = `couchly/${string}.html`;
+    window.location.href = `/${string}.html`;
 };
