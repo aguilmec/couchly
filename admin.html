@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./admin.css">
+        <link rel="stylesheet" href="./general.css">
+        <link rel="stylesheet" href="./navbar.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+    <body>
+        <div class="nav-bar"> 
+            <div class="left-container">
+                <button id="home-button" class="nav-bar-button">
+                    Home
+                </button>
+                <button id="nav-bar-products" class="nav-bar-button">
+                    Products
+                </button>
+                <button id="about-button" class="nav-bar-button">
+                    About
+                </button>
+            </div>
+            <div class="middle-container">
+                couchly
+            </div>
+        </div>
+        <div class="page-info">
+            Admin
+        </div>
+        <form class="pannel-container">
+            <div class="button-bar">
+                <button class="button-create">
+                    Create product
+                </button>
+                <button class="button-update">
+                    Update product
+                </button>
+                <button class="button-search">
+                    Search product
+                </button>
+                <button class="button-delete">
+                    Delete product
+                </button>
+            </div>
+            <div class="create-product-tab">
+                <p class="input-tag">Product's name: </p>
+                <input class="name-input" type="text" placeholder="Product's name">
+                <p class="input-tag">Product's description: </p>
+                <input class="description-input" type="text" placeholder="Product's description">
+                <p class="input-tag">Product's price: </p>
+                <input class="price-input" type="text" placeholder="Product's price">
+                <p class="input-tag">Product's type: </p>
+                <input class="type-input" type="text" placeholder="Product's type">
+                <p class="input-tag">Product's image: </p>
+                <input class="image-input" type="text" placeholder="Product's image url">
+                <p class="input-tag">Product's make: </p>
+                <input class="make-input" type="text" placeholder="Product's make">
+            </div>
+        </form>
+        
+    </body>
+    <script src="./admin.js" type="module"></script>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./login.css">
+        <link rel="stylesheet" href="./signup.css">
         <link rel="stylesheet" href="./navbar.css">
         <link rel="stylesheet" href="./footer.css">
         <link rel="stylesheet" href="./general.css">
@@ -41,21 +41,21 @@
             </div>
         </div>
         <div class="page-info">
-            Login
+            Sign Up
         </div>
         <div class="login-container">
-            <form class="login-form">
+            <form class="signup-form">
                 <p class="input-tag">e-mail</p>
-                <input type="text" id="email-input" class="email-login-input" placeholder="email">
-                <p class="error-message"></p>
+                <p class="email-error-message"></p>
+                <input type="text" id="email-input" class="email-login-input" placeholder="johndoe@email.com">
                 <p class="input-tag">Password</p>
-                <input type="text" id="password-input" class="password-login-input" placeholder="Password">
-                <p class="error-message"></p>
-                <button class="login-button">Login</button>
-                <a><p class="register-link">Don't have an account? Click here to register</p></a>
+                <p class="password-error-message"></p>
+                <input type="text" class="password-input" id="password-input" placeholder="Password">
+                <button class="signup-button">Sign Up</button>
+                <a><p class="register-link">Already have an account? Click here to sign in</p></a>
             </form>
 
         </div>
     </body>
-    <script type="module" src="./login.js"></script>
+    <script type = "module" src="./signup.js"></script>
 </html>

@@ -1,5 +1,6 @@
 import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js';
-import { db } from "./firebase.js";
+import { getAuth, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js'
+import { db, auth } from "./firebase.js";
 
 const productsButton = document.getElementById('nav-bar-products');
 const homeButton = document.getElementById('home-button');
@@ -12,7 +13,11 @@ const cartGrid = document.querySelector('.cart-grid');
 const closeButton = document.querySelector('.close-button');
 const cartTotal = document.querySelector('.cart-total');
 const cart = document.querySelector('.side-cart');
-const cartNumber = document.querySelector('.number-of-items')
+const cartNumber = document.querySelector('.number-of-items');
+const loginButton = document.getElementById('login-button');
+const signupButton = document.getElementById('signup-button');
+const logoutButton = document.getElementById('logout-button');
+
 
 productsButton.addEventListener('click', ()=>{navigateToPage('products')});
 homeButton.addEventListener('click', ()=>{navigateToPage('index')});
@@ -21,6 +26,9 @@ shopNowButton.addEventListener('click', ()=>{navigateToPage('products')});
 moreProductsButton.addEventListener('click', ()=>{navigateToPage('products')});
 cartButton.addEventListener('click',()=>{showCart(true)});
 closeButton.addEventListener('click',()=>{showCart(false)});
+loginButton.addEventListener('click', ()=>{navigateToPage('login')});
+signupButton.addEventListener('click', ()=>{navigateToPage('signup')});
+logoutButton.addEventListener('click',()=>{logoutUser()});
 
 const colRef = collection(db, 'featured');
 
@@ -28,12 +36,25 @@ let featured = [];
 let cartItems = [];
 let total = 0;
 
+onAuthStateChanged(auth, (user)=>{
+    if(user){
+        signupButton.style.display = 'none';
+        logoutButton.style.display = 'flex';
+    }else{
+        console.log('no');
+    };
+});
+
+function logoutUser(){
+    signOut(auth);
+    location.reload();
+};
+
 async function getData(){
     await getDocs(colRef)
     .then((response)=>{
         response.forEach(document => {
             featured.push({...document.data(), id: document.id});
-            console.log(featured)
         });
     });
     updateFeatured(featured);
@@ -71,7 +92,6 @@ function addItemToCart(itemID){
     cartItems.push(a[0]);
     updateCartNumber(true);
     updateCart(cartItems);
-    console.log('fdjkl')
 };
 
 

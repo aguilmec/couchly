@@ -70,6 +70,18 @@ body{
     transition: text-shadow 0.2s;
 }
 
+#login-button,
+#signup-button,
+#profile-button,
+#logout-button{
+    width: 100px;
+}
+
+#profile-button,
+#logout-button{
+    display: none;
+}
+
 .cart{
     background-color: transparent;
     color: white;
@@ -119,6 +131,11 @@ body{
 
 .right-container{
     padding-right: 20%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    column-gap: 40px;
 }
 
 .slogan{
