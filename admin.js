@@ -1,4 +1,4 @@
-import { getDocs, collection, doc, addDoc, query, where } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js';
+import { getDocs, updateDoc, collection, doc, addDoc, query, where } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js';
 import { db } from "./firebase.js";
 
 const createProductButton = document.querySelector('.button-create');
@@ -16,6 +16,22 @@ const searchTypeInput = document.querySelector('.product-search-type-input');
 const updateButton = document.querySelector('.update-button');
 const cancelButton = document.querySelector('.cancel-button');
 
+const editName = document.querySelector('.edit-name');
+const editPrice = document.querySelector('.edit-price');
+const editType = document.querySelector('.edit-type');
+const editDescription = document.querySelector('.edit-description');
+const editImage = document.querySelector('.edit-image');
+const editMake = document.querySelector('.edit-image');
+const confirmName = document.querySelector('.confirm-name');
+const confirmPrice = document.querySelector('.confirm-price');
+const confirmType = document.querySelector('.confirm-type');
+const confirmDescription = document.querySelector('.confirm-description');
+const confirmImage = document.querySelector('.confirm-image');
+const confirmMake = document.querySelector('.confirm-image');
+
+editName.addEventListener('click',(event)=>{event.preventDefault();showInput('name')});
+confirmName.addEventListener('click',(event)=>{event.preventDefault();updateField('name')});
+
 createProductButton.addEventListener('click',()=>{showCreateProductTab(true)});
 createProductForm.addEventListener('submit',(event)=>{submitProduct(event)});
 updateProductButton.addEventListener('click',()=>{showUpdateProduct(true)});
@@ -30,12 +46,14 @@ productSearchButton.addEventListener('click',()=>{
         console.log('no');
     };
 });
-updateButton.addEventListener('submit',(event)=>{
-    event.preventDefault();
-});
+
+async function updateField(field){
+    await updateDoc(docRef, {[field]: document.getElementById(`update-${field}-input`).value}).then(()=>{console.log('Document updated successfully')}).catch((error)=>{console.log(error)})
+}
 
 const colRef = collection(db, 'products');
 let data = [];
+let docRef = '';
 
 async function getData(type, value){
     data = [];
@@ -47,7 +65,6 @@ async function getData(type, value){
     }else if(type === 'type'){
         q = query(colRef, where('type','==',value));
     };
-    
     await getDocs(q)
         .then((snapshot)=>{
         snapshot.forEach((document)=>{
@@ -55,6 +72,13 @@ async function getData(type, value){
         });
     });
     updateProductGrid(data);
+};
+
+function showInput(input){
+    document.getElementById(`edit-${input}`).style.display = 'none';
+    document.getElementById(`confirm-${input}`).style.display = 'flex';
+    document.getElementById(`update-${input}-input`).style.display = 'flex';
+    document.getElementById(`product-${input}`).style.display = 'none';
 };
 
 function showCreateProductTab(show){
@@ -96,13 +120,14 @@ function updateProductGrid(data){
 };
 
 function editProduct(value){
+    docRef = doc(db, 'products', value);
     updateButton.style.display = 'flex';
     cancelButton.style.display = 'flex';
-    const product = data.filter((product)=>{
+    /*const product = data.filter((product)=>{
         if(product.id === value){
             return true;
         };
-    })[0];
+    })[0];*/
     resultsGrid.style.display = 'none';
     updateOptions.style.display = 'grid';
 };
@@ -123,12 +148,30 @@ async function submitProduct(event){
     const product = {
         name: createProductForm['product-name-input'].value,
         description: createProductForm['product-description-input'].value,
-        price: createProductForm['product-price-input'].value,
+        price: parseFloat(createProductForm['product-price-input'].value),
         type: createProductForm['product-type-input'].value,
         image: createProductForm['product-image-input'].value,
         make: createProductForm['product-make-input'].value,
     };
     await addDoc(colRef, product)
+          .then(()=>{console.log('Product created')})
           .catch((error)=>{console.log(error)});
 };
 
+/*<p class="input-tag">Product's name: </p>
+        <input id="update-name-input" class="name-input" type="text" placeholder="Product's name">
+        <p class="input-tag">Product's description: </p>
+        <input id="update-description-input" class="description-input" type="text" placeholder="Product's description">
+        <p class="input-tag">Product's price: </p>
+        <input id="update-price-input" class="price-input" type="text" placeholder="Product's price">
+        <p class="input-tag">Product's type: </p>
+        <input id="update-type-input" class="type-input" type="text" placeholder="Product's type">
+        <p class="input-tag">Product's image: </p>
+        <input id="update-image-input" class="image-input" type="text" placeholder="Product's image url">
+        <p class="input-tag">Product's make: </p>
+        <input id="update-make-input" class="make-input" type="text" placeholder="Product's make">
+        <div class="submit-button-container">
+            <button class="update-button">Update Product</button>
+            <button class="cancel-button">Cancel</button>
+        </div>
+*/

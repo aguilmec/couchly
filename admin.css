@@ -1,5 +1,5 @@
 .options-tab,
-.update-options-tab{
+.update-options{
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -10,6 +10,10 @@
     margin-top: 0px;
     margin-bottom: 15px;
     width: 80%;
+}
+
+.update-options-tab .update-options{
+    grid-template-columns: 2fr 4fr 75px;
 }
 
 .update-options-tab{
@@ -37,6 +41,23 @@
     text-align: end;
     cursor: default;
 }
+
+.update-options .product-price,
+.update-options .product-description,
+.update-options .product-image,
+.update-options .product-type,
+.update-options .product-price,
+.update-options .product-name,
+.update-options .product-make{
+    font-family: Open Sans;
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: rgb(37, 35, 65);
+    text-align: start;
+    cursor: default;
+    font-weight: bold;
+}
+
 .button-bar{
     width: 80%;
     margin-left: auto;
@@ -82,13 +103,27 @@
 .submit-button-container{
     display: flex;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .submit-button,
 .update-button,
 .product-search-button,
-.cancel-button{
-    padding: 10px 20px;
+.cancel-button,
+.edit-name,
+.edit-price,
+.edit-type,
+.edit-description,
+.edit-image,
+.edit-make,
+.confirm-name,
+.confirm-price,
+.confirm-type,
+.confirm-description,
+.confirm-image,
+.confirm-make{
+    padding: 8px 10px;
     border-radius: 8px;
     border-style: none;
     border-width: 2px;
@@ -97,7 +132,17 @@
     font-family: Open Sans;
     letter-spacing: 2px;
     cursor: pointer;
+    font-size: 12px;
     transition: background-color 0.3s;
+}
+
+.confirm-name,
+.confirm-price,
+.confirm-type,
+.confirm-description,
+.confirm-image,
+.confirm-make{
+    display: none;
 }
 
 .cancel-button{
@@ -114,14 +159,26 @@
 .product-search-button:hover,
 .update-button:hover,
 .edit-product-button:hover,
-.cancel-button:hover{
+.cancel-button:hover
+.edit-name:hover,
+.edit-price:hover,
+.edit-type:hover,
+.edit-description:hover,
+.edit-image:hover,
+.edit-make:hover,
+.confirm-name:hover,
+.confirm-price:hover,
+.confirm-type:hover,
+.confirm-description:hover,
+.confirm-image:hover,
+.confirm-make:hover{
     background-color: rgb(197, 138, 49);
     color: black;
 }
 
 .product-search{
     display: grid;
-    grid-template-columns: 3fr 3fr 3fr 1fr;
+    grid-template-columns: 3fr 3fr 3fr 75px;
     margin-bottom: 10px;
     width: 80%;
     margin-left: auto;
@@ -233,4 +290,13 @@
     border-radius: 5px;
     width: 1fr;
     font-family: Open Sans;
+}
+
+.update-options .name-input,
+.update-options .price-input,
+.update-options .type-input,
+.update-options .description-input,
+.update-options .make-input,
+.update-options .image-input{
+    display: none;
 }
