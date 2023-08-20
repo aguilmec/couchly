@@ -91,7 +91,6 @@ function filterByType(type){
         });
     }else{
         newData = data;
-
     } ;
     updateGrid(newData);
 };

@@ -1,22 +1,38 @@
-.create-product-tab{
+.options-tab,
+.update-options-tab{
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
     display: grid;
     grid-template-columns: 1fr 2fr;
     row-gap: 10px;
     column-gap: 70px;
     align-items: center;
     margin-top: 0px;
+    margin-bottom: 15px;
+    width: 80%;
+}
+
+.update-options-tab{
+    display: none;
+}
+
+.create-product-tab,
+.update-product-tab{
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.37);
-    padding-top: 50px;
-    padding-bottom: 50px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: none;
 }
 
 .input-tag{
     font-family: Open Sans;
     letter-spacing: 2px;
-    font-size: 16px;
+    font-size: 14px;
     color: rgb(37, 35, 65);
     text-align: end;
     cursor: default;
@@ -30,25 +46,191 @@
     margin-bottom: 0;
 }
 
-input{
+.options-tab input,
+.update-options-tab input{
     height: 30px;
     border-width: 1px;
     border-style: solid;
     border-color: rgba(37, 35, 65, 0.658);
     padding: 2px 10px;
     border-radius: 5px;
-    width: 88%;
+    width: 1fr;
+    font-family: Open Sans;
 }
 
-.button-bar button{
+.button-create,
+.button-update,
+.button-search,
+.button-delete{
     background-color: rgba(0, 0, 255, 0.062);
     border: none;
     padding: 10px 0 10px 0;
     cursor: pointer;
+    font-family: Open Sans;
+    font-weight: bold;
+    color: rgb(92, 92, 92);
+    font-size: 14px;
 }
 
-.button-bar button:active{
+.selected-left,
+.selected-second-left{
     box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.37);
     background-color: white;
+    border: none;
+}
 
+.submit-button-container{
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button,
+.update-button,
+.product-search-button,
+.cancel-button{
+    padding: 10px 20px;
+    border-radius: 8px;
+    border-style: none;
+    border-width: 2px;
+    background-color: rgb(180, 121, 31);
+    color: white;
+    font-family: Open Sans;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cancel-button{
+    margin-left: 5px;
+    display: none;
+}
+
+.update-button{
+    margin-right: 5px;
+    display: none;
+}
+
+.submit-button:hover,
+.product-search-button:hover,
+.update-button:hover,
+.edit-product-button:hover,
+.cancel-button:hover{
+    background-color: rgb(197, 138, 49);
+    color: black;
+}
+
+.product-search{
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr;
+    margin-bottom: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    column-gap: 20px;
+}
+
+.product-search-button-container{
+    display: flex;
+    justify-content: end;
+}
+
+.product-grid{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    width: 80%;
+}
+
+.product{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.432);
+    height: 120px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.product-img{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-left: 15px;
+}
+
+.product-name{
+    font-family: Open Sans;
+    font-size: 15px;
+    color: rgb(37, 35, 65);
+    letter-spacing: 1px;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.product-make{
+    font-family: Open Sans;
+    font-size: 15px;
+    color: rgb(37, 35, 65);
+    letter-spacing: 1px;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    cursor: default;
+}
+
+.product-price{
+    font-family: Open Sans;
+    font-size: 15px;
+    color: rgb(158, 105, 26);
+    letter-spacing: 1px;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.edit-product-button{
+    padding: 10px 15px;
+    border-radius: 8px;
+    border-style: none;
+    border-width: 2px;
+    background-color: rgb(180, 121, 31);
+    color: white;
+    font-family: Open Sans;
+    letter-spacing: 1px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.right-product-container{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.middle-product-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-search-name-input,
+.product-search-type-input,
+.product-search-make-input{
+    height: 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(37, 35, 65, 0.658);
+    padding: 2px 10px;
+    border-radius: 5px;
+    width: 1fr;
+    font-family: Open Sans;
 }

@@ -39,7 +39,7 @@
         <div class="page-info">
             Admin
         </div>
-        <form class="pannel-container">
+        <div class="pannel-container">
             <div class="button-bar">
                 <button class="button-create">
                     Create product
@@ -54,21 +54,69 @@
                     Delete product
                 </button>
             </div>
-            <div class="create-product-tab">
-                <p class="input-tag">Product's name: </p>
-                <input class="name-input" type="text" placeholder="Product's name">
-                <p class="input-tag">Product's description: </p>
-                <input class="description-input" type="text" placeholder="Product's description">
-                <p class="input-tag">Product's price: </p>
-                <input class="price-input" type="text" placeholder="Product's price">
-                <p class="input-tag">Product's type: </p>
-                <input class="type-input" type="text" placeholder="Product's type">
-                <p class="input-tag">Product's image: </p>
-                <input class="image-input" type="text" placeholder="Product's image url">
-                <p class="input-tag">Product's make: </p>
-                <input class="make-input" type="text" placeholder="Product's make">
+            <form class="create-product-tab">
+                <div class="options-tab"> 
+                    <p class="input-tag">Product's name: </p>
+                    <input id="product-name-input" class="name-input" type="text" placeholder="Product's name">
+                    <p class="input-tag">Product's description: </p>
+                    <input id="product-description-input" class="description-input" type="text" placeholder="Product's description">
+                    <p class="input-tag">Product's price: </p>
+                    <input id="product-price-input" class="price-input" type="text" placeholder="Product's price">
+                    <p class="input-tag">Product's type: </p>
+                    <input id="product-type-input" class="type-input" type="text" placeholder="Product's type">
+                    <p class="input-tag">Product's image: </p>
+                    <input id="product-image-input" class="image-input" type="text" placeholder="Product's image url">
+                    <p class="input-tag">Product's make: </p>
+                    <input id="product-make-input" class="make-input" type="text" placeholder="Product's make">
+                </div>
+                <div class="submit-button-container">
+                    <button class="submit-button">Create Product</button>
+                </div>
+            </form>
+
+            <div class="update-product-tab">
+                <div class="product-search">
+                    <input id="" class="product-search-name-input" placeholder="Product's name">
+                    <input id="" class="product-search-make-input" placeholder="Product's make">
+                    <input id="" class="product-search-type-input" placeholder="Product's type">
+                    <div class="product-search-button-container">
+                        <button class="product-search-button">Search</button>
+                    </div>
+                </div>
+                <div class="results-grid">
+                    
+                    <div class="product">
+                        <img class="product-img" src="https://www.ikea.com/gb/en/images/products/malm-bedroom-furniture-set-of-2-white__0859120_pe624279_s5.jpg?f=s">
+                        <div class="middle-product-container">
+                            <p class="product-name">Product</p>
+                            <p class="product-make">Ikea</p>
+                            <p class="product-price">$80.99</p>
+                        </div>
+                        <div class="right-product-container">
+                            <button class="edit-product-button">Edit</button>
+                        </div> 
+                    </div>
+                </div>
+                <form class="update-options-tab"> 
+                    <p class="input-tag">Product's name: </p>
+                    <input id="update-name-input" class="name-input" type="text" placeholder="Product's name">
+                    <p class="input-tag">Product's description: </p>
+                    <input id="update-description-input" class="description-input" type="text" placeholder="Product's description">
+                    <p class="input-tag">Product's price: </p>
+                    <input id="update-price-input" class="price-input" type="text" placeholder="Product's price">
+                    <p class="input-tag">Product's type: </p>
+                    <input id="update-type-input" class="type-input" type="text" placeholder="Product's type">
+                    <p class="input-tag">Product's image: </p>
+                    <input id="update-image-input" class="image-input" type="text" placeholder="Product's image url">
+                    <p class="input-tag">Product's make: </p>
+                    <input id="update-make-input" class="make-input" type="text" placeholder="Product's make">
+                </form>
+                <div class="submit-button-container">
+                    <button class="update-button">Update Product</button>
+                    <button class="cancel-button">Cancel</button>
+                </div>
             </div>
-        </form>
+        </div>
         
     </body>
     <script src="./admin.js" type="module"></script>

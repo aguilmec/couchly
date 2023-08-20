@@ -18,7 +18,6 @@ const loginButton = document.getElementById('login-button');
 const signupButton = document.getElementById('signup-button');
 const logoutButton = document.getElementById('logout-button');
 
-
 productsButton.addEventListener('click', ()=>{navigateToPage('products')});
 homeButton.addEventListener('click', ()=>{navigateToPage('index')});
 aboutButton.addEventListener('click', ()=>{navigateToPage('about')});
