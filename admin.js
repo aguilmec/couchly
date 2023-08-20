@@ -30,6 +30,7 @@ const confirmImage = document.querySelector('.confirm-image');
 const confirmMake = document.querySelector('.confirm-image');
 
 editName.addEventListener('click',(event)=>{event.preventDefault();showInput('name')});
+editPrice.addEventListener('click',(event)=>{event.preventDefault();showInput('price')});
 confirmName.addEventListener('click',(event)=>{event.preventDefault();updateField('name')});
 
 createProductButton.addEventListener('click',()=>{showCreateProductTab(true)});
