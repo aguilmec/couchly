@@ -197,7 +197,8 @@ body{
     cursor: default;
 }
 
-.featured-grid{
+.featured-grid,
+.sales-grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 40px;
@@ -277,7 +278,8 @@ body{
     background-color: rgba(0, 0, 0, 0.404);
 }
 
-.add-cart-featured{
+.add-cart-featured,
+.add-cart-sales{
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -285,7 +287,8 @@ body{
     margin-right: 10px;
 }
 
-.search-button-featured{
+.search-button-featured,
+.search-button-sales{
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -705,4 +708,10 @@ body{
     font-family: Open Sans;
     letter-spacing: 2px;
     cursor: pointer;
+}
+
+.loading-message{
+    display: none;
+    font-family: Open Sans;
+    font-size: 18px;
 }

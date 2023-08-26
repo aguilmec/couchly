@@ -1,7 +1,9 @@
 import { getDocs, getDoc, collection } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js';
 import { db } from "./firebase.js";
 
-const colRef = collection(db,'products');
+const col = window.location.href.split('?')[1];
+console.log(col)
+const colRef = collection(db,col);
 
 const productsButton = document.getElementById('nav-bar-products');
 const homeButton = document.getElementById('home-button');
@@ -22,6 +24,7 @@ const cart = document.querySelector('.side-cart');
 const cartGrid = document.querySelector('.cart-grid');
 const closeButton = document.querySelector('.close-button');
 const cartTotal = document.querySelector('.cart-total');
+const loader = document.querySelector('.loader-products');
 
 productsButton.addEventListener('click', ()=>{navigateToPage('products')});
 homeButton.addEventListener('click', ()=>{navigateToPage('index')});
@@ -40,11 +43,21 @@ let makers = [];
 let cartItems = [];
 let data = [];
 let total = 0;
+let loading = true;
+
+if(loading === true){
+    loader.style.display = 'flex';
+    productGrid.style.display = 'none';
+};
 
 
 //Get data from firebase
 getDocs(colRef)
-.then((response)=>{response.docs.forEach((document)=>{
+.then((response)=>{
+    loading = false;
+    loader.style.display = 'none';
+    productGrid.style.display = 'grid';
+    response.docs.forEach((document)=>{
     data.push({...document.data(), id: document.id});
     if(!makers.includes(document.data().make)){
         makers.push(document.data().make);
@@ -152,7 +165,7 @@ function updateCartNumber(type){
             value -= 1;
             cartNumber.innerHTML = value;
         };
-    }
+    };
     
 };
 
@@ -248,7 +261,7 @@ function updateGrid(data){
 };
 
 function gotoProduct(id){
-    window.location.href = `product.html?${id}`;
+    window.location.href = `product.html?products?${id}`;
 };
 
 updateGrid(data);
@@ -265,384 +278,4 @@ updateGrid(data);
             {name:"Modular Closet",type:"closet",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et magna purus. Vestibulum mauris eros, convallis scelerisque pharetra ac, vehicula ac tortor. Mauris auctor condimentum felis sed pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac felis vel.",make:"Couchly",image:"https://www.estiloydeco.com/wp-content/uploads/2020/02/muebles-modulares-ikea-10.jpg",price:70,id:"xGHb0oiXgmEu5U1UAoRJ"}];
 
 
-<div class="product-grid">
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./chair2.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./chair1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./closet1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./coffee3.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./table2.jpeg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./table1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./chair2.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./chair1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./closet1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./coffee3.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./table2.jpeg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./table1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./chair2.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./chair1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./closet1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./coffee3.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./table2.jpeg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-container-product">
-                        <div class="product-modal">
-                            <button class="add-cart-product">
-                                <span class="material-symbols-outlined">search</span>
-                            </button>
-                            <button class="search-button-product">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
-                            </button>
-                        </div>
-                        <img class="product-image" src="./table1.jpg">
-                    </div>
-                    <div class="bottom-container-product">
-                        <p class="product-name">
-                            Ergonomic Office Chair
-                        </p>
-                        <p class="product-price">
-                            $542.99
-                        </p>
-                    </div>
-                </div>
-            </div>
-            */
+*/

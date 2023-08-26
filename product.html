@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="./product.css">
+        <link rel="stylesheet" href="./loader.css">
         <link rel="stylesheet" href="./navbar.css">
         <link rel="stylesheet" href="./footer.css">
         <link rel="stylesheet" href="./general.css">
@@ -38,34 +39,44 @@
             </div>
             <div class="right-container">
                 <button class="cart"><span class="material-symbols-outlined">shopping_cart</span></button>
+                <div class="number-of-items">0</div>
             </div>
         </div>
+
+        <div class="side-cart">
+            <div class="fadeout"></div>
+            <div class="cart-container">
+                <div class="cart-header">
+                    <div class="cart-left-container">
+                        <button class="close-button">
+                            X
+                        </button>
+                    </div>
+                    <div class="cart-right-container">
+                        <p class="cart-title">
+                            Cart
+                        </p>
+                    </div>
+                </div>
+                <div class="cart-grid"></div>
+                <div class="cart-total">Total: $0.00</div>
+            </div>
+        </div>
+
         <div class="page-info">
             Product Detail
         </div>
 
+        <div class="loader"></div>
         <div class="product-info-container">
             <div class="image-container-product">
-                <img class="product-image" src="./sofa1.jpg">
+                <img class="product-image" src="">
             </div>
             <div class="product-info">
-                <div class="product-name">
-                    Leather Sofa
-                </div>
-                <div class="product-maker">
-                    By IKEA
-                </div>
-                <div class="product-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Quidem pariatur consequatur ullam animi doloribus eaque 
-                    explicabo! Maxime sequi voluptates exercitationem est aliquam 
-                    vitae odio. Dolore, in, ratione iusto velit quidem maiores 
-                    consectetur voluptates at inventore nulla ipsum facilis dolores 
-                    nihil.
-                </div>
-                <div class="product-price">
-                    $125.99
-                </div>
+                <div class="product-name"></div>
+                <div class="product-maker"></div>
+                <div class="product-description"></div>
+                <div class="product-price"></div>
 
                 <button class="add-to-cart">Add to Cart</button>
             </div>

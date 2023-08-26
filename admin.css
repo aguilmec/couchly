@@ -300,3 +300,12 @@
 .update-options .image-input{
     display: none;
 }
+
+.message{
+    height: 25px;
+    font-family: Open Sans;
+}
+
+.success-message{
+    color: rgb(14, 80, 14);
+}

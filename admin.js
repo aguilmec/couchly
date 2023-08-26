@@ -15,6 +15,7 @@ const searchMakeInput = document.querySelector('.product-search-make-input');
 const searchTypeInput = document.querySelector('.product-search-type-input');
 const updateButton = document.querySelector('.update-button');
 const cancelButton = document.querySelector('.cancel-button');
+const message = document.querySelector('.message');
 
 const editName = document.querySelector('.edit-name');
 const editPrice = document.querySelector('.edit-price');
@@ -49,8 +50,17 @@ productSearchButton.addEventListener('click',()=>{
 });
 
 async function updateField(field){
-    await updateDoc(docRef, {[field]: document.getElementById(`update-${field}-input`).value}).then(()=>{console.log('Document updated successfully')}).catch((error)=>{console.log(error)})
-}
+    await updateDoc(docRef, {[field]: document.getElementById(`update-${field}-input`).value})
+          .then(()=>{
+            message.classList.add('success-message');
+            message.innerHTML = 'Document updated successfully'});
+            setTimeout(()=>{
+                message.innerHTML = '';
+            },2500)
+          .catch((error)=>{
+            console.log(error);
+            message.innerHTML = `An error has ocurred. Error code: ${error.code}.`});
+};
 
 const colRef = collection(db, 'products');
 let data = [];
@@ -124,11 +134,6 @@ function editProduct(value){
     docRef = doc(db, 'products', value);
     updateButton.style.display = 'flex';
     cancelButton.style.display = 'flex';
-    /*const product = data.filter((product)=>{
-        if(product.id === value){
-            return true;
-        };
-    })[0];*/
     resultsGrid.style.display = 'none';
     updateOptions.style.display = 'grid';
 };
@@ -158,21 +163,3 @@ async function submitProduct(event){
           .then(()=>{console.log('Product created')})
           .catch((error)=>{console.log(error)});
 };
-
-/*<p class="input-tag">Product's name: </p>
-        <input id="update-name-input" class="name-input" type="text" placeholder="Product's name">
-        <p class="input-tag">Product's description: </p>
-        <input id="update-description-input" class="description-input" type="text" placeholder="Product's description">
-        <p class="input-tag">Product's price: </p>
-        <input id="update-price-input" class="price-input" type="text" placeholder="Product's price">
-        <p class="input-tag">Product's type: </p>
-        <input id="update-type-input" class="type-input" type="text" placeholder="Product's type">
-        <p class="input-tag">Product's image: </p>
-        <input id="update-image-input" class="image-input" type="text" placeholder="Product's image url">
-        <p class="input-tag">Product's make: </p>
-        <input id="update-make-input" class="make-input" type="text" placeholder="Product's make">
-        <div class="submit-button-container">
-            <button class="update-button">Update Product</button>
-            <button class="cancel-button">Cancel</button>
-        </div>
-*/

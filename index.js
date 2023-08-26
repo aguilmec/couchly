@@ -17,28 +17,51 @@ const cartNumber = document.querySelector('.number-of-items');
 const loginButton = document.getElementById('login-button');
 const signupButton = document.getElementById('signup-button');
 const logoutButton = document.getElementById('logout-button');
+const profileButton = document.getElementById('profile-button');
+const gotoSales = document.getElementById('goto-sales');
+const salesGrid = document.querySelector('.sales-grid');
+const featuredLoader = document.querySelector('.loader-featured');
+const saleLoader = document.querySelector('.loader-sale');
 
-productsButton.addEventListener('click', ()=>{navigateToPage('products')});
-homeButton.addEventListener('click', ()=>{navigateToPage('index')});
-aboutButton.addEventListener('click', ()=>{navigateToPage('about')});
-shopNowButton.addEventListener('click', ()=>{navigateToPage('products')});
-moreProductsButton.addEventListener('click', ()=>{navigateToPage('products')});
+productsButton.addEventListener('click', ()=>{navigateToPage('products.html?products')});
+homeButton.addEventListener('click', ()=>{navigateToPage('index.html')});
+aboutButton.addEventListener('click', ()=>{navigateToPage('about.html')});
+shopNowButton.addEventListener('click', ()=>{navigateToPage('products.html?products')});
+moreProductsButton.addEventListener('click', ()=>{navigateToPage('products.html?featured')});
 cartButton.addEventListener('click',()=>{showCart(true)});
 closeButton.addEventListener('click',()=>{showCart(false)});
-loginButton.addEventListener('click', ()=>{navigateToPage('login')});
-signupButton.addEventListener('click', ()=>{navigateToPage('signup')});
+loginButton.addEventListener('click', ()=>{navigateToPage('login.html')});
+signupButton.addEventListener('click', ()=>{navigateToPage('signup.html')});
 logoutButton.addEventListener('click',()=>{logoutUser()});
+gotoSales.addEventListener('click', ()=>{navigateToPage('products.html?sales')});
 
 const colRef = collection(db, 'featured');
+const colRefSales = collection(db, 'sales');
 
 let featured = [];
+let sales = [];
 let cartItems = [];
 let total = 0;
+let loading = true;
+let loadingSale = true
+
+if (loading === true){
+    featuredGrid.style.display = 'none';
+    featuredLoader.style.display = 'flex';
+};
+
+if (loadingSale === true){
+    salesGrid.style.display = 'none';
+    saleLoader.style.display = 'flex';
+};
 
 onAuthStateChanged(auth, (user)=>{
     if(user){
         signupButton.style.display = 'none';
         logoutButton.style.display = 'flex';
+        loginButton.style.display = 'none';
+        profileButton.style.display = 'flex';
+
     }else{
         console.log('no');
     };
@@ -52,11 +75,74 @@ function logoutUser(){
 async function getData(){
     await getDocs(colRef)
     .then((response)=>{
+        loading = false;
+        featuredGrid.style.display = 'flex';
+        featuredLoader.style.display = 'none';
         response.forEach(document => {
             featured.push({...document.data(), id: document.id});
         });
     });
     updateFeatured(featured);
+};
+
+async function getSales(){
+    await getDocs(colRefSales)
+          .then((response)=>{
+            loading = false;
+            salesGrid.style.display = 'flex';
+            saleLoader.style.display = 'none';
+            response.forEach((document)=>{
+                sales.push({...document.data(), id: document.id})
+            });
+          }).catch((error)=>{
+            console.log(error);
+          });
+    updateSales(sales);
+};
+
+getSales();
+
+function updateSales(sales){
+    let salesGridValue = '';
+    sales.forEach((document)=>{
+        salesGridValue = salesGridValue + `
+            <div class="featured-product">
+                <div class="image-container-featured">
+                    <div class="featured-modal">
+                        <button value="${document.id}" class="add-cart-sales">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                        <button value="${document.id}" class="search-button-sales">
+                            <span class="material-symbols-outlined">search</span>
+                        </button>
+                    </div>
+                    <img class="featured-image" src="${document.image}">
+                </div>
+                <div class="bottom-container-featured">
+                    <p class="featured-name">
+                        ${document.name}
+                    </p>
+                    <p class="featured-price">
+                        $${document.price}
+                    </p>
+                </div>
+            </div>`
+    });
+
+    salesGrid.innerHTML = salesGridValue;
+
+    let buttonsList = document.querySelectorAll('.add-cart-sales');
+    buttonsList.forEach((button)=>{
+        button.addEventListener('click',()=>{addItemToCart(button.value, sales)});
+    });
+
+    buttonsList = document.querySelectorAll('.search-button-sales');
+    buttonsList.forEach((button)=>{
+        button.addEventListener('click', ()=>{
+            navigateToPage(`product.html?sales?${button.value}`)
+        });
+    });
+
 };
 
 getData();
@@ -82,12 +168,13 @@ function updateCartNumber(type){
             value -= 1;
             cartNumber.innerHTML = value;
         };
-    }
+    };
     
 };
 
-function addItemToCart(itemID){
-    let a = featured.filter((item)=>{if(item.id === itemID){return true}})
+function addItemToCart(itemID, data){
+    console.log(data)
+    let a = data.filter((item)=>{if(item.id === itemID){return true}})
     cartItems.push(a[0]);
     updateCartNumber(true);
     updateCart(cartItems);
@@ -142,7 +229,7 @@ function updateFeatured(data){
                             <button value="${product.id}" class="add-cart-featured">
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                             </button>
-                            <button class="search-button-featured">
+                            <button value="${product.id}" class="search-button-featured">
                                 <span class="material-symbols-outlined">search</span>
                             </button>
                         </div>
@@ -163,8 +250,17 @@ function updateFeatured(data){
 
     const addToCartButtons = document.querySelectorAll('.add-cart-featured');
     addToCartButtons.forEach((button)=>{
-        button.addEventListener('click', ()=>{addItemToCart(button.value)});
+        button.addEventListener('click', ()=>{addItemToCart(button.value, featured)});
     });
+
+    const searchProductButtons = document.querySelectorAll('.search-button-featured');
+    searchProductButtons.forEach((button)=>{
+        button.addEventListener('click', ()=>{gotoProduct(button.value)});
+    });
+};
+
+function gotoProduct(value){
+    window.location.href = `product.html?featured?${value}`;
 };
 
 function showCart(value){
@@ -176,7 +272,7 @@ function showCart(value){
 };
 
 function navigateToPage(string){
-    window.location.href = `/${string}.html`;
+    window.location.href = `/${string}`;
 };
 
 function removeItem(id){
