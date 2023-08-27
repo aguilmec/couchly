@@ -76,7 +76,7 @@ async function getData(){
     await getDocs(colRef)
     .then((response)=>{
         loading = false;
-        featuredGrid.style.display = 'flex';
+        featuredGrid.style.display = 'grid';
         featuredLoader.style.display = 'none';
         response.forEach(document => {
             featured.push({...document.data(), id: document.id});
@@ -89,7 +89,7 @@ async function getSales(){
     await getDocs(colRefSales)
           .then((response)=>{
             loading = false;
-            salesGrid.style.display = 'flex';
+            salesGrid.style.display = 'grid';
             saleLoader.style.display = 'none';
             response.forEach((document)=>{
                 sales.push({...document.data(), id: document.id})
