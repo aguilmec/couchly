@@ -23,7 +23,7 @@ const salesGrid = document.querySelector('.sales-grid');
 const featuredLoader = document.querySelector('.loader-featured');
 const saleLoader = document.querySelector('.loader-sale');
 
-productsButton.addEventListener('click', ()=>{navigateToPage('products.html?products')});
+productsButton.addEventListener('click', ()=>{navigateToPage('couchly/products.html?products')});
 homeButton.addEventListener('click', ()=>{navigateToPage('index.html')});
 aboutButton.addEventListener('click', ()=>{navigateToPage('about.html')});
 shopNowButton.addEventListener('click', ()=>{navigateToPage('products.html?products')});
