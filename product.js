@@ -18,7 +18,7 @@ const cartNumber = document.querySelector('.number-of-items');
 const cartGrid = document.querySelector('.cart-grid');
 const cartTotal = document.querySelector('.cart-total');
 
-homeButton.addEventListener('click',()=>{navigateToPage('index.html')});
+homeButton.addEventListener('click',()=>{navigateToPage('couchly/index.html')});
 productsButton.addEventListener('click',()=>{navigateToPage('couchly/products/products.html')});
 cartButton.addEventListener('click',()=>{showCart(true)});
 closeButton.addEventListener('click',()=>{showCart(false)});

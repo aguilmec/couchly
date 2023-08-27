@@ -24,16 +24,16 @@ const featuredLoader = document.querySelector('.loader-featured');
 const saleLoader = document.querySelector('.loader-sale');
 
 productsButton.addEventListener('click', ()=>{navigateToPage('couchly/products.html?products')});
-homeButton.addEventListener('click', ()=>{navigateToPage('index.html')});
-aboutButton.addEventListener('click', ()=>{navigateToPage('about.html')});
-shopNowButton.addEventListener('click', ()=>{navigateToPage('products.html?products')});
-moreProductsButton.addEventListener('click', ()=>{navigateToPage('products.html?featured')});
+homeButton.addEventListener('click', ()=>{navigateToPage('couchly/index.html')});
+aboutButton.addEventListener('click', ()=>{navigateToPage('couchly/about.html')});
+shopNowButton.addEventListener('click', ()=>{navigateToPage('couchly/products.html?products')});
+moreProductsButton.addEventListener('click', ()=>{navigateToPage('couchly/products.html?featured')});
 cartButton.addEventListener('click',()=>{showCart(true)});
 closeButton.addEventListener('click',()=>{showCart(false)});
-loginButton.addEventListener('click', ()=>{navigateToPage('login.html')});
-signupButton.addEventListener('click', ()=>{navigateToPage('signup.html')});
+loginButton.addEventListener('click', ()=>{navigateToPage('couchly/login.html')});
+signupButton.addEventListener('click', ()=>{navigateToPage('couchly/signup.html')});
 logoutButton.addEventListener('click',()=>{logoutUser()});
-gotoSales.addEventListener('click', ()=>{navigateToPage('products.html?sales')});
+gotoSales.addEventListener('click', ()=>{navigateToPage('couchly/products.html?sales')});
 
 const colRef = collection(db, 'featured');
 const colRefSales = collection(db, 'sales');
@@ -260,7 +260,7 @@ function updateFeatured(data){
 };
 
 function gotoProduct(value){
-    window.location.href = `product.html?featured?${value}`;
+    window.location.href = `couchly/product.html?featured?${value}`;
 };
 
 function showCart(value){

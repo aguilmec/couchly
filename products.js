@@ -26,9 +26,9 @@ const closeButton = document.querySelector('.close-button');
 const cartTotal = document.querySelector('.cart-total');
 const loader = document.querySelector('.loader-products');
 
-productsButton.addEventListener('click', ()=>{navigateToPage('products')});
-homeButton.addEventListener('click', ()=>{navigateToPage('index')});
-aboutButton.addEventListener('click', ()=>{navigateToPage('about')});
+productsButton.addEventListener('click', ()=>{navigateToPage('couchly/products.html')});
+homeButton.addEventListener('click', ()=>{navigateToPage('couchly/index.html')});
+aboutButton.addEventListener('click', ()=>{navigateToPage('couchly/about.html')});
 priceSlider.addEventListener('change',()=>{changePrice()});
 chairFilter.addEventListener('click', ()=>{filterByType('chair')});
 tableFilter.addEventListener('click', ()=>{filterByType('table')});
@@ -127,7 +127,7 @@ updateFilters();
 
 //Page navigation
 function navigateToPage(string){
-    window.location.href = `/${string}.html`;
+    window.location.href = `/${string}`;
 };
 
 //Function that changes the price of the price tag element based on the selected value on the slider
